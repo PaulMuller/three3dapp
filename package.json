@@ -1,12 +1,12 @@
 {
-  
-  "dependencies": {
-    "three": "^0.172.0"
-  },
-  "devDependencies": {
-    "vite": "^6.0.7"
-  },
-  "scripts": {
-    "dev": "vite --host localhost --port 3000 --config vite.config.js"
-  }
+    "dependencies": {
+        "three": "^0.172.0"
+    },
+    "devDependencies": {
+        "vite": "^6.0.7"
+    },
+    "scripts": {
+        "build": "vite build",
+        "dev": "vite"
+    }
 }
