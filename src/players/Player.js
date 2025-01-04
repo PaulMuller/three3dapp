@@ -10,6 +10,7 @@ const geometry = new THREE.CapsuleGeometry(0.25, 0.5)
 export class Player extends GameObject {
 	name = 'Player';
 
+
 	/**
 	 * Instantiates a new instance of the player
 	 * @param {THREE.Vector3} coords 

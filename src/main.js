@@ -1,5 +1,6 @@
 import * as THREE from 'three'
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
+import { RTSControls } from './RTSControls.js'
 import Stats from 'three/addons/libs/stats.module.js'
 import { GUI } from 'three/addons/libs/lil-gui.module.min.js'
 import { BattleWorld } from './worlds/BattleWorld.js'
@@ -17,12 +18,13 @@ renderer.setPixelRatio(devicePixelRatio)
 document.body.appendChild(renderer.domElement)
 
 const scene = new THREE.Scene()
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
+const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000)
+scene.add(camera)
 camera.layers.enable(1)
 
-const controls = new OrbitControls(camera, renderer.domElement)
-controls.target.set(5, 0, 5)
-camera.position.set(0, 2, 0)
+const controls = new RTSControls(camera, renderer.domElement)
+// controls.target.set(5, 0, 5)
+// camera.position.set(0, 2, 0)
 controls.update()
 
 const world = new BattleWorld(10, 10, camera)
