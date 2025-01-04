@@ -15,9 +15,7 @@ export class Bush extends GameObject {
 	constructor(coords) {
 		const minRadius = 0.1
 		const maxRadius = 0.3
-		const radius = minRadius +
-			(Math.random() * (maxRadius - minRadius))
-
+		const radius = minRadius + (Math.random() * (maxRadius - minRadius))
 		const bushMesh = new THREE.Mesh(bushGeometry, bushMaterial)
 		bushMesh.scale.set(radius, radius, radius)
 		bushMesh.position.set(0.5, radius, 0.5)

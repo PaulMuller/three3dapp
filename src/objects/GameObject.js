@@ -2,49 +2,15 @@ import * as THREE from 'three'
 import { createTextMaterial } from '../utils'
 
 export class GameObject extends THREE.Group {
-	/**
-	 * @type {THREE.Vector3}
-	 */
 	coords
-
-	/**
-	 * @type {THREE.Mesh}
-	 */
 	mesh
-
-	/**
-	 * @type {number}
-	 */
 	hitPoints = 10;
-
-	/**
-	 * @type {number}
-	 */
 	maxHitPoints = 10;
-
-	/**
-	 * @type {THREE.Sprite}
-	 */
 	healthOverlay
 
-	/**
-	 * Callback triggered when the object moves
-	 * @param {GameObject} object 
-	 * @param {THREE.Vector3} oldCoords 
-	 * @param {THREE.Vector3} newCoords 
-	 */
 	onMove = (object, oldCoords, newCoords) => { }
-
-	/**
-	 * Callback triggered when the object's hit points go to zero
-	 * @param {GameObject} object 
-	 */
 	onDestroy = (object) => { }
 
-	/**
-	 * @param {THREE.Vector3} coords 
-	 * @param {THREE.Mesh} mesh
-	 */
 	constructor(coords, mesh) {
 		super()
 
@@ -86,10 +52,6 @@ export class GameObject extends THREE.Group {
 		this.updateHitpointOverlay()
 	}
 
-	/**
-	 * Moves the player to the coordinates
-	 * @param {THREE.Vector3} coords 
-	 */
 	moveTo(coords) {
 		const oldCoords = this.coords
 

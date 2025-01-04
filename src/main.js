@@ -19,12 +19,12 @@ document.body.appendChild(renderer.domElement)
 
 const scene = new THREE.Scene()
 const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000)
-scene.add(camera)
 camera.layers.enable(1)
 
-const controls = new RTSControls(camera, renderer.domElement)
-// controls.target.set(5, 0, 5)
-// camera.position.set(0, 2, 0)
+const axesHelper = new THREE.AxesHelper(5)
+scene.add(axesHelper)
+
+const controls = new RTSControls(camera, renderer.domElement, scene)
 controls.update()
 
 const world = new BattleWorld(10, 10, camera)
@@ -41,16 +41,27 @@ const ambient = new THREE.AmbientLight()
 ambient.intensity = 0.5
 scene.add(ambient)
 
-function animate() {
-    controls.update()
-    renderer.render(scene, camera)
+function animate(time, delta) {
+    // requestAnimationFrame(animate)
+    controls.update(time, delta)
     stats.update()
+
+
+    render()
+}
+
+function render() {
+    renderer.render(scene, camera)
 }
 
 window.addEventListener('resize', () => {
     camera.aspect = window.innerWidth / window.innerHeight
     camera.updateProjectionMatrix()
     renderer.setSize(window.innerWidth, window.innerHeight)
+})
+
+document.addEventListener('contextmenu', function(event) {
+    event.preventDefault()
 })
 
 const worldFolder = gui.addFolder('BattleWorld').close()
