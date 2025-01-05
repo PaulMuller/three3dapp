@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 import { BattleWorld } from './worlds/BattleWorld.js'
-import { getKey } from './utils'
+import { getKey } from './utils.js'
 
 
 export function search(start, end, world) {

@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 import { Action } from './Action.js'
-import { search } from '../pathfinding'
-import { updateStatus } from '../utils'
+import { search } from '../pathfinding.js'
+import { updateStatus } from '../utils.js'
 
 const breadcrumb = new THREE.Mesh(
 	new THREE.SphereGeometry(0.1),

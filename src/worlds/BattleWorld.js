@@ -1,11 +1,11 @@
 import * as THREE from 'three'
-import { Bush } from '../objects/Bush'
-import { GameObject } from '../objects/GameObject'
-import { Rock } from '../objects/Rock'
-import { Tree } from '../objects/Tree'
-import { getKey } from '../utils'
-import { HumanPlayer } from '../players/HumanPlayer'
-import assetLoader from '../AssetLoader'
+import { Bush } from '../objects/Bush.js'
+import { GameObject } from '../objects/GameObject.js'
+import { Rock } from '../objects/Rock.js'
+import { Tree } from '../objects/Tree.js'
+import { getKey } from '../utils.js'
+import { HumanPlayer } from '../players/HumanPlayer.js'
+import assetLoader from '../AssetLoader.js'
 
 export class BattleWorld extends THREE.Group {
 	#objectMap = new Map()

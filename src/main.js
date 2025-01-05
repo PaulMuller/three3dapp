@@ -4,7 +4,7 @@ import Stats from 'three/addons/libs/stats.module.js'
 import { GUI } from 'three/addons/libs/lil-gui.module.min.js'
 import { BattleWorld } from './worlds/BattleWorld.js'
 import { CombatManager } from './CombatManager.js'
-import assetLoader from './AssetLoader'
+import assetLoader from './AssetLoader.js'
 
 
 const initialize = async () => {

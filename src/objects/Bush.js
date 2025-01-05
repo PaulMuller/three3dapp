@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import { GameObject } from './GameObject'
+import { GameObject } from './GameObject.js'
 
 const material = new THREE.MeshStandardMaterial({
 	color: 0x80a040,

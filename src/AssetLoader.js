@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader'
+import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader.js'
 
 class AssetLoader {
 	static generateFilePaths(name, format, count = 1, basePath = './assets/') {

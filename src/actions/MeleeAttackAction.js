@@ -1,5 +1,3 @@
-import { GameObject } from '../objects/GameObject'
-
 
 export class MeleeAttackAction {
 	name = 'Melee Attack'

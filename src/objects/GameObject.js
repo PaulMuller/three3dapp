@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import { createTextMaterial } from '../utils'
+import { createTextMaterial } from '../utils.js'
 
 export class GameObject extends THREE.Group {
 

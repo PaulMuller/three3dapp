@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 import { Player } from './Player.js'
-import { updateStatus } from '../utils'
+import { updateStatus } from '../utils.js'
 
 export class HumanPlayer extends Player {
 	name = 'HumanPlayer'

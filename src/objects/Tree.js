@@ -1,6 +1,6 @@
 import * as THREE from 'three'
-import { GameObject } from './GameObject'
-import assetLoader from '../AssetLoader'
+import { GameObject } from './GameObject.js'
+import assetLoader from '../AssetLoader.js'
 import { TechnicolorShader } from 'three/examples/jsm/Addons.js'
 
 const geometry = new THREE.ConeGeometry(0.2, 1, 8)

@@ -1,6 +1,6 @@
 import * as THREE from 'three'
-import { GameObject } from './GameObject'
-import assetLoader from '../AssetLoader'
+import { GameObject } from './GameObject.js'
+import assetLoader from '../AssetLoader.js'
 
 export class Rock extends GameObject {
 	constructor(coords) {

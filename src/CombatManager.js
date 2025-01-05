@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import { updateStatus } from './utils'
+import { updateStatus } from './utils.js'
 
 export class CombatManager {
 	players = [];
