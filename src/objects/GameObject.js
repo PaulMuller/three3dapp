@@ -2,11 +2,7 @@ import * as THREE from 'three'
 import { createTextMaterial } from '../utils'
 
 export class GameObject extends THREE.Group {
-	coords
-	mesh
-	hitPoints = 10;
-	maxHitPoints = 10;
-	healthOverlay
+
 
 	onMove = (object, oldCoords, newCoords) => { }
 	onDestroy = (object) => { }
@@ -19,6 +15,9 @@ export class GameObject extends THREE.Group {
 
 		this.mesh = mesh
 		this.add(mesh)
+
+		this.hitPoints = 10
+		this.maxHitPoints = 10
 
 		this.healthOverlay = new THREE.Sprite()
 		this.healthOverlay.position.set(0.5, 1.2, 0.5)

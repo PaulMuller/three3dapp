@@ -124,7 +124,6 @@ const createScene = (assets) => {
 
 const main = async () => {
     await initialize()
-    console.log(assetLoader.getTexture('gridTexture'))
     createScene()
 }
 

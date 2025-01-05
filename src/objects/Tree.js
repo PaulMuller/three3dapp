@@ -9,9 +9,6 @@ const material = new THREE.MeshStandardMaterial({
 })
 
 export class Tree extends GameObject {
-	/**
-	 * @param {THREE.Vector3} coords 
-	 */
 	constructor(coords) {
 		const mesh = new THREE.Mesh(geometry, material)
 		mesh.position.set(0.5, 0.5, 0.5)
