@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 import { GameObject } from '../objects/GameObject.js'
-import { Action, MeleeAttackAction, MovementAction, RangedAttackAction, WaitAction } from '../actions.js'
+import { Action, MeleeAttackAction, MovementAction, RangedAttackAction, WaitAction } from '../actions'
 
 const DEFAULT_RADIUS = 0.1
 const DEFAULT_HEIGHT = 0.15
