@@ -1,7 +1,17 @@
 import * as THREE from 'three'
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader'
 
-export class AssetLoader {
+class AssetLoader {
+	static generateFilePaths(name, format, count = 1, basePath = './assets/') {
+		const filePaths = {}
+		for (let i = 0; i < count; i++) {
+			const key = `${name}_${i + 1}`
+			const value = `${basePath}/${name}_${i + 1}.${format}`
+			filePaths[key] = value
+		}
+		return filePaths
+	}
+
 	constructor() {
 		this.textureLoader = new THREE.TextureLoader()
 		this.fbxLoader = new FBXLoader()
@@ -20,16 +30,11 @@ export class AssetLoader {
 	// Asset manifest - define all your assets here
 	static assetManifest = {
 		models: {
-			rock1: './assets/rocks/rock1.fbx',
-			rock2: './assets/rocks/rock2.fbx',
-			tree1: './assets/trees/tree1.fbx',
-			// Add more models as needed
+			...AssetLoader.generateFilePaths('Rock', 'fbx', 25, 'models/Rocks/'),
 		},
 		textures: {
-			rockTexture1: './assets/textures/rock1.png',
-			rockTexture2: './assets/textures/rock2.png',
-			treeTexture1: './assets/textures/tree1.png',
-			// Add more textures as needed
+			gridTexture: 'textures/grid.png',
+			...AssetLoader.generateFilePaths('rockTexture', 'png', 2, 'textures/RockTexture/'),
 		}
 	};
 
@@ -105,3 +110,7 @@ export class AssetLoader {
 		return this.assets.textures[name]
 	}
 }
+
+const assetLoader = new AssetLoader()
+
+export default assetLoader

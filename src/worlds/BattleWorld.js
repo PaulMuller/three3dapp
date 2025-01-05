@@ -5,9 +5,7 @@ import { Rock } from '../objects/Rock'
 import { Tree } from '../objects/Tree'
 import { getKey } from '../utils'
 import { HumanPlayer } from '../players/HumanPlayer'
-
-const textureLoader = new THREE.TextureLoader()
-const gridTexture = textureLoader.load('textures/grid.png')
+import assetLoader from '../AssetLoader'
 
 export class BattleWorld extends THREE.Group {
 	#objectMap = new Map();
@@ -20,6 +18,8 @@ export class BattleWorld extends THREE.Group {
 		this.treeCount = 10
 		this.rockCount = 10
 		this.bushCount = 10
+
+		this.gridTexture = assetLoader.getTexture('gridTexture')
 
 		this.objects = new THREE.Group()
 		this.add(this.objects)
@@ -66,13 +66,14 @@ export class BattleWorld extends THREE.Group {
 	}
 
 	createTerrain() {
-		gridTexture.repeat = new THREE.Vector2(this.width, this.height)
-		gridTexture.wrapS = THREE.RepeatWrapping
-		gridTexture.wrapT = THREE.RepeatWrapping
-		gridTexture.colorSpace = THREE.SRGBColorSpace
+		this.gridTexture = assetLoader.getTexture('gridTexture')
+		this.gridTexture.repeat = new THREE.Vector2(this.width, this.height)
+		this.gridTexture.wrapS = THREE.RepeatWrapping
+		this.gridTexture.wrapT = THREE.RepeatWrapping
+		this.gridTexture.colorSpace = THREE.SRGBColorSpace
 
 		const terrainMaterial = new THREE.MeshStandardMaterial({
-			map: gridTexture
+			map: this.gridTexture
 		})
 
 		const terrainGeometry = new THREE.BoxGeometry(this.width, 0.1, this.height)
