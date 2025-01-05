@@ -1,11 +1,11 @@
 import * as THREE from 'three'
 import { GameObject } from './GameObject'
 
-const treeGeometry = new THREE.ConeGeometry(0.2, 1, 8)
+const geometry = new THREE.ConeGeometry(0.2, 1, 8)
 
-const treeMaterial = new THREE.MeshStandardMaterial({
+const material = new THREE.MeshStandardMaterial({
 	color: 0x305010,
-	flatShading: true
+	// flatShading: true
 })
 
 export class Tree extends GameObject {
@@ -13,11 +13,13 @@ export class Tree extends GameObject {
 	 * @param {THREE.Vector3} coords 
 	 */
 	constructor(coords) {
-		const treeMesh = new THREE.Mesh(treeGeometry, treeMaterial)
-		treeMesh.position.set(0.5, 0.5, 0.5)
+		const mesh = new THREE.Mesh(geometry, material)
+		mesh.position.set(0.5, 0.5, 0.5)
+		mesh.castShadow = true
 
-		super(coords, treeMesh)
+		super(coords, mesh)
 
 		this.name = `Tree-(${coords.x},${coords.z})`
+		
 	}
 }

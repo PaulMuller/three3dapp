@@ -16,10 +16,9 @@ export class HumanPlayer extends Player {
 
 		return new Promise((resolve) => {
 			const onMouseDown = (event) => {
-				const coords = new THREE.Vector2(
-					(event.clientX / window.innerWidth) * 2 - 1,
-					- (event.clientY / window.innerHeight) * 2 + 1
-				)
+				const x = (event.clientX / window.innerWidth) * 2 - 1
+				const y = - (event.clientY / window.innerHeight) * 2 + 1
+				const coords = new THREE.Vector2(x, y)
 
 				this.raycaster.setFromCamera(coords, this.camera)
 				const intersections = this.raycaster.intersectObject(this.world.terrain)
@@ -49,10 +48,9 @@ export class HumanPlayer extends Player {
 			 * @param {MouseEvent} event 
 			 */
 			const onMouseDown = (event) => {
-				const coords = new THREE.Vector2(
-					(event.clientX / window.innerWidth) * 2 - 1,
-					- (event.clientY / window.innerHeight) * 2 + 1
-				)
+				const x = (event.clientX / window.innerWidth) * 2 - 1
+				const y = - (event.clientY / window.innerHeight) * 2 + 1
+				const coords = new THREE.Vector2(x, y)
 
 				this.raycaster.setFromCamera(coords, this.camera)
 				const intersections = this.raycaster.intersectObject(this.world.objects, true)

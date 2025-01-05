@@ -79,6 +79,7 @@ export class BattleWorld extends THREE.Group {
 
 		this.terrain = new THREE.Mesh(terrainGeometry, terrainMaterial)
 		this.terrain.name = 'Terrain'
+		this.terrain.receiveShadow = true
 		this.terrain.position.set(this.width / 2, -0.05, this.height / 2)
 		this.add(this.terrain)
 	}

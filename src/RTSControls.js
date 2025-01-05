@@ -105,8 +105,6 @@ class RTSControls extends Controls {
 		this._moveVector.x = this._moveState.forward - this._moveState.backward
 		this._moveVector.z = this._moveState.right - this._moveState.left
 		this._moveVector.y = this._moveState.rotateRight - this._moveState.rotateLeft
-
-		console.log(this._moveVector)
 	}
 
 	update(time, delta = 0.01) {

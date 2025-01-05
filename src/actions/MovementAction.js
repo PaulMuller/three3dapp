@@ -9,15 +9,15 @@ const breadcrumb = new THREE.Mesh(
 )
 
 export class MovementAction extends Action {
-	name = 'Move';
-
-	path = [];
-	pathIndex = 0;
-	pathUpdater = null;
 
 	constructor(source, world) {
 		super(source)
 		this.world = world
+
+		this.name = 'Move'
+		this.path = []
+		this.pathIndex = 0
+		this.pathUpdater = null
 	}
 
 	async perform() {
@@ -61,10 +61,7 @@ export class MovementAction extends Action {
 		const selectedCoords = await this.source.getTargetSquare()
 
 		// Find path from player's current position to the selected square
-		this.path = search(
-			this.source.coords,
-			selectedCoords,
-			this.world)
+		this.path = search(this.source.coords, selectedCoords, this.world)
 
 		if (this.path === null) {
 			return {

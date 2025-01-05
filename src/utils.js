@@ -27,7 +27,11 @@ export function createTextMaterial(text) {
 	context.strokeText(text, size / 2, size / 2)
 	context.fillText(text, size / 2, size / 2)
 
+	const texture = new THREE.CanvasTexture(canvas)
+
+	canvas.remove()
+
 	return new THREE.SpriteMaterial({
-		map: new THREE.CanvasTexture(canvas)
+		map: texture
 	})
 }

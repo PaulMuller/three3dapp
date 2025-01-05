@@ -2,29 +2,35 @@ import * as THREE from 'three'
 import { GameObject } from '../objects/GameObject'
 import { Action, MeleeAttackAction, MovementAction, RangedAttackAction, WaitAction } from '../actions'
 
-const geometry = new THREE.CapsuleGeometry(0.25, 0.5)
+const DEFAULT_RADIUS = 0.1
+const DEFAULT_HEIGHT = 0.15
+const DEFAULT_CAP_SEGMENTS = 8
+const DEFAULT_HEIGHT_SEGMENTS = 16
+
+
 
 /**
  * Base player class that human and computer players derive from
  */
 export class Player extends GameObject {
-	name = 'Player';
+	
 
-
-	/**
-	 * Instantiates a new instance of the player
-	 * @param {THREE.Vector3} coords 
-	 * @param {THREE.Camera} camera 
-	 * @param {World} world 
-	 */
 	constructor(coords, camera, world) {
+		const geometry = new THREE.CapsuleGeometry(
+			DEFAULT_RADIUS, 
+			DEFAULT_HEIGHT, 
+			DEFAULT_CAP_SEGMENTS, 
+			DEFAULT_HEIGHT_SEGMENTS
+		)
 		const material = new THREE.MeshStandardMaterial({ color: 0x4040c0 })
-		const playerMesh = new THREE.Mesh(geometry, material)
-		playerMesh.position.set(0.5, 0.5, 0.5)
+		const mesh = new THREE.Mesh(geometry, material)
+		mesh.castShadow = true
+		mesh.position.set(0.5, DEFAULT_HEIGHT, 0.5)
 
-		super(coords, playerMesh)
+		super(coords, mesh)
 
 		this.healthOverlay.visible = true
+		this.name = 'Player'
 
 		this.moveTo(coords)
 		this.camera = camera
