@@ -8,16 +8,16 @@ import { HumanPlayer } from '../players/HumanPlayer'
 import assetLoader from '../AssetLoader'
 
 export class BattleWorld extends THREE.Group {
-	#objectMap = new Map();
+	#objectMap = new Map()
 
 	constructor(width, height, camera) {
 		super()
 
 		this.width = width
 		this.height = height
-		this.treeCount = 10
+		this.treeCount = 20
 		this.rockCount = 10
-		this.bushCount = 10
+		this.bushCount = 0
 
 		this.objects = new THREE.Group()
 		this.add(this.objects)
@@ -123,13 +123,6 @@ export class BattleWorld extends THREE.Group {
 		}
 	}
 
-	/**
-	 * Adds an object to the world at the specified coordinates unless
-	 * an object already exists at those coordinates
-	 * @param {GameObject} object 
-	 * @param {'players' | 'props'} group The group to add the object to
-	 * @returns 
-	 */
 	addObject(object, group) {
 		// Don't place objects on top of each other
 		if (this.#objectMap.has(getKey(object.coords))) {
@@ -160,11 +153,6 @@ export class BattleWorld extends THREE.Group {
 		return true
 	}
 
-	/**
-	 * Returns the object at `coords` if one exists, otherwise returns null
-	 * @param {THREE.Vector2} coords 
-	 * @returns {object | null}
-	 */
 	getObject(coords) {
 		return this.#objectMap.get(getKey(coords)) ?? null
 	}

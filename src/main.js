@@ -18,8 +18,8 @@ const initialize = async () => {
 
     try {
         // Load all assets
-        await assetLoader.loadAll((progress) => {
-            loadingDiv.textContent = `Loading: ${Math.round(progress * 100)}%`
+        await assetLoader.loadAll((progress, asset) => {
+            loadingDiv.innerHTML = `<h2> Loading: ${Math.round(progress * 100)}% </br> ${asset} </h2>`
         })
 
         // Remove loading display
@@ -61,7 +61,7 @@ const createScene = (assets) => {
 
     const combatManager = new CombatManager()
 
-    const sun = new THREE.DirectionalLight(0xffffff, 5)
+    const sun = new THREE.DirectionalLight(0xffff99, 5)
     sun.position.set(1000, 1000, 1000)
     sun.castShadow = true
 
@@ -79,7 +79,7 @@ const createScene = (assets) => {
     // const helper = new THREE.CameraHelper(sun.shadow.camera)
     // scene.add(helper)
 
-    const ambient = new THREE.AmbientLight(0xffffff, 0.6)
+    const ambient = new THREE.AmbientLight(0x9999ff, 0.6)
     scene.add(ambient)
 
     function animate(time, delta) {

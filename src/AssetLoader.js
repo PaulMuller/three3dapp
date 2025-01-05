@@ -31,17 +31,28 @@ class AssetLoader {
 	static assetManifest = {
 		models: {
 			...AssetLoader.generateFilePaths('Rock', 'fbx', 25, 'models/Rocks/'),
+			...AssetLoader.generateFilePaths('DeadOak', 'fbx', 3, 'models/Trees/'),
+			...AssetLoader.generateFilePaths('DeadSpruce', 'fbx', 3, 'models/Trees/'),
+			...AssetLoader.generateFilePaths('Spruce', 'fbx', 3, 'models/Trees/'),
+			...AssetLoader.generateFilePaths('Oak', 'fbx', 3, 'models/Trees/'),
 		},
 		textures: {
 			gridTexture: 'textures/grid.png',
 			...AssetLoader.generateFilePaths('rockTexture', 'png', 2, 'textures/RockTexture/'),
+			DeadOak_Trunk: 'textures/TreesTexture/DeadOak_Trunk.png',
+			DeadOak_Leaf: 'textures/TreesTexture/DeadOak_Leaf.png',
+			DeadSpruce_Trunk: 'textures/TreesTexture/DeadSpruce_Trunk.png',
+			DeadSpruce_Leaf: 'textures/TreesTexture/DeadSpruce_Leaf.png',
+			Oak_Leaf: 'textures/TreesTexture/Oak_Leaf.png',
+			Oak_Trunk: 'textures/TreesTexture/Oak_Trunk.png',
+			Spruce_Leaf: 'textures/TreesTexture/Spruce_Leaf.png',
+			Spruce_Trunk: 'textures/TreesTexture/Spruce_Trunk.png',
 		}
 	};
 
 	async loadAll(onProgress = () => { }) {
 		const manifest = AssetLoader.assetManifest
-		this.totalAssets = Object.keys(manifest.models).length +
-			Object.keys(manifest.textures).length
+		this.totalAssets = Object.keys(manifest.models).length + Object.keys(manifest.textures).length
 
 		try {
 			// Load all textures
@@ -71,7 +82,7 @@ class AssetLoader {
 				(texture) => {
 					this.assets.textures[name] = texture
 					this.loadedAssets++
-					onProgress(this.loadedAssets / this.totalAssets)
+					onProgress(this.loadedAssets / this.totalAssets, path + name)
 					resolve(texture)
 				},
 				undefined,
@@ -87,7 +98,7 @@ class AssetLoader {
 				(model) => {
 					this.assets.models[name] = model
 					this.loadedAssets++
-					onProgress(this.loadedAssets / this.totalAssets)
+					onProgress(this.loadedAssets / this.totalAssets, path + name)
 					resolve(model)
 				},
 				undefined,
