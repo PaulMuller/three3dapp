@@ -2,7 +2,7 @@
 	"$schema": "https://openapi.vercel.sh/vercel.json",
 	"headers": [
 		{
-			"source": "*.js",
+			"source": "/assets/*.js",
 			"headers": [
 				{
 					"key": "Content-Type",
