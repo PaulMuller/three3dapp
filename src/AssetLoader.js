@@ -30,23 +30,23 @@ class AssetLoader {
 	// Asset manifest - define all your assets here
 	static assetManifest = {
 		models: {
-			...AssetLoader.generateFilePaths('Rock', 'fbx', 25, 'models/Rocks/'),
-			...AssetLoader.generateFilePaths('DeadOak', 'fbx', 3, 'models/Trees/'),
-			...AssetLoader.generateFilePaths('DeadSpruce', 'fbx', 3, 'models/Trees/'),
-			...AssetLoader.generateFilePaths('Spruce', 'fbx', 3, 'models/Trees/'),
-			...AssetLoader.generateFilePaths('Oak', 'fbx', 3, 'models/Trees/'),
+			...AssetLoader.generateFilePaths('Rock', 'fbx', 25, 'assets/models/Rocks/'),
+			...AssetLoader.generateFilePaths('DeadOak', 'fbx', 3, 'assets/models/Trees/'),
+			...AssetLoader.generateFilePaths('DeadSpruce', 'fbx', 3, 'assets/models/Trees/'),
+			...AssetLoader.generateFilePaths('Spruce', 'fbx', 3, 'assets/models/Trees/'),
+			...AssetLoader.generateFilePaths('Oak', 'fbx', 3, 'assets/models/Trees/'),
 		},
 		textures: {
-			gridTexture: 'textures/grid.png',
-			...AssetLoader.generateFilePaths('rockTexture', 'png', 2, 'textures/RockTexture/'),
-			DeadOak_Trunk: 'textures/TreesTexture/DeadOak_Trunk.png',
-			DeadOak_Leaf: 'textures/TreesTexture/DeadOak_Leaf.png',
-			DeadSpruce_Trunk: 'textures/TreesTexture/DeadSpruce_Trunk.png',
-			DeadSpruce_Leaf: 'textures/TreesTexture/DeadSpruce_Leaf.png',
-			Oak_Leaf: 'textures/TreesTexture/Oak_Leaf.png',
-			Oak_Trunk: 'textures/TreesTexture/Oak_Trunk.png',
-			Spruce_Leaf: 'textures/TreesTexture/Spruce_Leaf.png',
-			Spruce_Trunk: 'textures/TreesTexture/Spruce_Trunk.png',
+			gridTexture: 'assets/textures/grid.png',
+			...AssetLoader.generateFilePaths('rockTexture', 'png', 2, 'assets/textures/RockTexture/'),
+			DeadOak_Trunk: 'assets/textures/TreesTexture/DeadOak_Trunk.png',
+			DeadOak_Leaf: 'assets/textures/TreesTexture/DeadOak_Leaf.png',
+			DeadSpruce_Trunk: 'assets/textures/TreesTexture/DeadSpruce_Trunk.png',
+			DeadSpruce_Leaf: 'assets/textures/TreesTexture/DeadSpruce_Leaf.png',
+			Oak_Leaf: 'assets/textures/TreesTexture/Oak_Leaf.png',
+			Oak_Trunk: 'assets/textures/TreesTexture/Oak_Trunk.png',
+			Spruce_Leaf: 'assets/textures/TreesTexture/Spruce_Leaf.png',
+			Spruce_Trunk: 'assets/textures/TreesTexture/Spruce_Trunk.png',
 		}
 	};
 
