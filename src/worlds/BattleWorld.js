@@ -15,7 +15,7 @@ export class BattleWorld extends THREE.Group {
 
 		this.width = width
 		this.height = height
-		this.treeCount = 20
+		this.treeCount = 30
 		this.rockCount = 10
 		this.bushCount = 0
 
