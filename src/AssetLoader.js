@@ -1,5 +1,6 @@
 import * as THREE from 'three'
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader.js'
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 
 class AssetLoader {
 	static generateFilePaths(name, format, count = 1, basePath = './assets/') {
@@ -15,6 +16,7 @@ class AssetLoader {
 	constructor() {
 		this.textureLoader = new THREE.TextureLoader()
 		this.fbxLoader = new FBXLoader()
+		this.gltfLoader = new GLTFLoader()
 
 		// Storage for loaded assets
 		this.assets = {
@@ -30,15 +32,21 @@ class AssetLoader {
 	// Asset manifest - define all your assets here
 	static assetManifest = {
 		models: {
-			...AssetLoader.generateFilePaths('Rock', 'fbx', 25, 'assets/models/Rocks/'),
-			...AssetLoader.generateFilePaths('DeadOak', 'fbx', 3, 'assets/models/Trees/'),
-			...AssetLoader.generateFilePaths('DeadSpruce', 'fbx', 3, 'assets/models/Trees/'),
-			...AssetLoader.generateFilePaths('Spruce', 'fbx', 3, 'assets/models/Trees/'),
-			...AssetLoader.generateFilePaths('Oak', 'fbx', 3, 'assets/models/Trees/'),
+			// Barbarian: 'assets/models/Characters/Barbarian.fbx',
+			Barbarian: 'assets/models/Characters/Barbarian.glb',
+			// Knight: 'assets/models/Characters/Knight.fbx',
+			// Mage: 'assets/models/Characters/Mage.fbx',
+			// Rogue: 'assets/models/Characters/Rogue.fbx',
+
+			...AssetLoader.generateFilePaths('Rock', 'fbx', 25, 'assets/models/Rocks'),
+			...AssetLoader.generateFilePaths('DeadOak', 'fbx', 3, 'assets/models/Trees'),
+			...AssetLoader.generateFilePaths('DeadSpruce', 'fbx', 3, 'assets/models/Trees'),
+			...AssetLoader.generateFilePaths('Spruce', 'fbx', 3, 'assets/models/Trees'),
+			...AssetLoader.generateFilePaths('Oak', 'fbx', 3, 'assets/models/Trees'),
 		},
 		textures: {
 			gridTexture: 'assets/textures/grid.png',
-			...AssetLoader.generateFilePaths('rockTexture', 'png', 2, 'assets/textures/RockTexture/'),
+			...AssetLoader.generateFilePaths('rockTexture', 'png', 2, 'assets/textures/RockTexture'),
 			DeadOak_Trunk: 'assets/textures/TreesTexture/DeadOak_Trunk.png',
 			DeadOak_Leaf: 'assets/textures/TreesTexture/DeadOak_Leaf.png',
 			DeadSpruce_Trunk: 'assets/textures/TreesTexture/DeadSpruce_Trunk.png',
@@ -47,6 +55,11 @@ class AssetLoader {
 			Oak_Trunk: 'assets/textures/TreesTexture/Oak_Trunk.png',
 			Spruce_Leaf: 'assets/textures/TreesTexture/Spruce_Leaf.png',
 			Spruce_Trunk: 'assets/textures/TreesTexture/Spruce_Trunk.png',
+
+			// Barbarian_texture: 'assets/textures/CharactersTexture/barbarian_texture.png',
+			// Knight_texture: 'assets/textures/CharactersTexture/knight_texture.png',
+			// Mage_texture: 'assets/textures/CharactersTexture/mage_texture.png',
+			// Rogue_texture: 'assets/textures/CharactersTexture/rogue_texture.png'
 		}
 	};
 
@@ -82,7 +95,7 @@ class AssetLoader {
 				(texture) => {
 					this.assets.textures[name] = texture
 					this.loadedAssets++
-					onProgress(this.loadedAssets / this.totalAssets, path + name)
+					onProgress(this.loadedAssets / this.totalAssets, path, name)
 					resolve(texture)
 				},
 				undefined,
@@ -93,17 +106,34 @@ class AssetLoader {
 
 	loadModel(name, path, onProgress) {
 		return new Promise((resolve, reject) => {
-			this.fbxLoader.load(
-				path,
-				(model) => {
-					this.assets.models[name] = model
-					this.loadedAssets++
-					onProgress(this.loadedAssets / this.totalAssets, path + name)
-					resolve(model)
-				},
-				undefined,
-				(error) => reject(error)
-			)
+			if (path.includes('.fbx')){
+				this.fbxLoader.load(
+					path,
+					(model) => {
+						this.assets.models[name] = model
+						this.loadedAssets++
+						onProgress(this.loadedAssets / this.totalAssets, path, name)
+						resolve(model)
+					},
+					undefined,
+					(error) => reject(error)
+				)
+			}else if(path.includes('.glb') || path.includes('.gltf')){
+				this.gltfLoader.load(
+					path,
+					(model) => {
+						this.assets.models[name] = model
+						this.loadedAssets++
+						onProgress(this.loadedAssets / this.totalAssets, path, name)
+						resolve(model)
+					},
+					undefined,
+					(error) => reject(error)
+				)
+			}
+
+
+			
 		})
 	}
 
@@ -113,8 +143,8 @@ class AssetLoader {
 			console.warn(`Model '${name}' not found in loaded assets`)
 			return null
 		}
-		// Return a clone so the original remains untouched
-		return model.clone()
+
+		return model.clone ? model.clone() : model
 	}
 
 	getTexture(name) {

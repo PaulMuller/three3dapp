@@ -1,33 +1,19 @@
 import * as THREE from 'three'
 import { GameObject } from '../objects/GameObject.js'
 import { Action, MeleeAttackAction, MovementAction, RangedAttackAction, WaitAction } from '../actions'
-
-const DEFAULT_RADIUS = 0.1
-const DEFAULT_HEIGHT = 0.15
-const DEFAULT_CAP_SEGMENTS = 8
-const DEFAULT_HEIGHT_SEGMENTS = 16
+import assetLoader from '../AssetLoader.js'
+import * as SkeletonUtils from 'three/addons/utils/SkeletonUtils.js'
 
 
-
-/**
- * Base player class that human and computer players derive from
- */
 export class Player extends GameObject {
-	
-
 	constructor(coords, camera, world) {
-		const geometry = new THREE.CapsuleGeometry(
-			DEFAULT_RADIUS, 
-			DEFAULT_HEIGHT, 
-			DEFAULT_CAP_SEGMENTS, 
-			DEFAULT_HEIGHT_SEGMENTS
-		)
-		const material = new THREE.MeshStandardMaterial({ color: 0x4040c0 })
-		const mesh = new THREE.Mesh(geometry, material)
-		mesh.castShadow = true
-		mesh.position.set(0.5, DEFAULT_HEIGHT, 0.5)
+		const Barbarian =  assetLoader.getModel('Barbarian')
+		const model = SkeletonUtils.clone( Barbarian.scene )
+		const mixer = new THREE.AnimationMixer( model )
 
-		super(coords, mesh)
+		mixer.clipAction( Barbarian.animations[ 0 ] ).play() // idle
+
+		super(coords, model)
 
 		this.healthOverlay.visible = true
 		this.name = 'Player'
@@ -37,9 +23,6 @@ export class Player extends GameObject {
 		this.world = world
 	}
 
-	/**
-	 * @returns {Action[]}
-	 */
 	getActions() {
 		return [
 			new MovementAction(this, this.world),
@@ -49,26 +32,14 @@ export class Player extends GameObject {
 		]
 	}
 
-	/**
-	 * Wait for the player to choose a target square
-	 * @returns {Promise<Vector3 | null>}
-	 */
 	async getTargetSquare() {
 		return null
 	}
 
-	/**
-	 * Wait for the player to choose a target GameObject
-	 * @returns {Promise<GameObject | null>}
-	 */
 	async getTargetObject() {
 		return null
 	}
 
-	/**
-	 * Wait for the player to select an action to perform
-	 * @returns {Promise<Action | null>}
-	 */
 	async requestAction() {
 		return null
 	}

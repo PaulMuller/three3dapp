@@ -4,6 +4,7 @@ import assetLoader from '../AssetLoader.js'
 
 export class Rock extends GameObject {
 	constructor(coords) {
+		const rotation = Math.random() * 2 * Math.PI
 		const randomIndexForModel = Math.floor(Math.random() * 25) + 1
 		const randomIndexForTexture = Math.floor(Math.random() * 2) + 1
 
@@ -19,6 +20,7 @@ export class Rock extends GameObject {
 			child.receiveShadow = true
 			child.position.set(0.5, 0, 0.5)
 			child.scale.set(.1,.1,.1)
+			child.rotation.z = rotation
 		})
 		super(coords, model)
 

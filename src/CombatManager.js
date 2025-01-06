@@ -19,7 +19,7 @@ export class CombatManager {
 
 				let actionPerformed = false
 
-				player.mesh.material.color = new THREE.Color(0xffff00)
+				// player.mesh.material.color = new THREE.Color(0xffff00)
 
 				updateStatus(`Waiting for ${player.name} to select an action`)
 
@@ -35,7 +35,7 @@ export class CombatManager {
 					}
 				} while (!actionPerformed)
 
-				player.mesh.material.color = new THREE.Color(0x0000ff)
+				// player.mesh.material.color = new THREE.Color(0x0000ff)
 			}
 		}
 	}

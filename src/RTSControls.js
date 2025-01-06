@@ -1,9 +1,5 @@
-import {
-	Vector3,
-	Controls,
-	Object3D
-} from 'three'
-
+import { Vector3, Controls, Object3D } from 'three'
+	
 const _changeEvent = { type: 'change' }
 
 class RTSControls extends Controls {

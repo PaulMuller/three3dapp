@@ -1,5 +1,4 @@
 import * as THREE from 'three'
-import { BattleWorld } from './worlds/BattleWorld.js'
 import { getKey } from './utils.js'
 
 

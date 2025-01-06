@@ -18,8 +18,8 @@ const initialize = async () => {
 
     try {
         // Load all assets
-        await assetLoader.loadAll((progress, asset) => {
-            loadingDiv.innerHTML = `<h2> Loading: ${Math.round(progress * 100)}% </br> ${asset} </h2>`
+        await assetLoader.loadAll((progress, path, name) => {
+            loadingDiv.innerHTML = `<h2> Loading: ${Math.round(progress * 100)}%</h2> <h3>${path}</h3> <h3>${name}</h3> `
         })
 
         // Remove loading display
@@ -28,11 +28,23 @@ const initialize = async () => {
         console.error('Failed to load assets:', error)
         loadingDiv.textContent = 'Error loading assets'
     }
+
+
+    const Barbarian = assetLoader.getModel('Barbarian')
+
+    const model = Barbarian.scene
+    const animations = Barbarian.animations
+    model.traverse( function ( object ) {
+        if ( object.isMesh ) {
+            object.castShadow = true;
+            object.receiveShadow = true
+        }
+    })
+    model.scale.setScalar(0.25)
+    model.position.set(0.5, 0, 0.5)
 }
 
-const createScene = (assets) => {
-    const gui = new GUI()
-
+const createScene = () => {
     const stats = new Stats()
     document.body.appendChild(stats.dom)
 
@@ -45,10 +57,17 @@ const createScene = (assets) => {
     document.body.appendChild(renderer.domElement)
 
     const scene = new THREE.Scene()
+    scene.background = new THREE.Color( 0xa0a0a0 )
+
+    const mesh = new THREE.Mesh( new THREE.PlaneGeometry( 100, 100 ), new THREE.MeshPhongMaterial( { color: 222222, depthWrite: false } ) )
+    mesh.rotation.x = - Math.PI / 2
+    // mesh.receiveShadow = true
+    scene.add( mesh )
+    
     const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000)
     camera.layers.enable(1)
-    // const helper = new THREE.CameraHelper( camera )
-    // scene.add( helper )
+
+
 
     const axesHelper = new THREE.AxesHelper(5)
     scene.add(axesHelper)
@@ -103,6 +122,7 @@ const createScene = (assets) => {
         event.preventDefault()
     })
 
+    const gui = new GUI()
     const worldFolder = gui.addFolder('BattleWorld').close()
     worldFolder.add(world, 'width', 1, 20, 1).name('Width')
     worldFolder.add(world, 'height', 1, 20, 1).name('Height')
@@ -110,14 +130,6 @@ const createScene = (assets) => {
     worldFolder.add(world, 'rockCount', 1, 100, 1).name('Rock Count')
     worldFolder.add(world, 'bushCount', 1, 100, 1).name('Bush Count')
     worldFolder.add(world, 'generate').name('Generate')
-
-    // Create a folder for light properties
-    const lightFolder = gui.addFolder('Light Properties').close()
-    lightFolder.add(sun.shadow.mapSize, 'width', 256, 2048).name('Shadow Map Width')
-    lightFolder.add(sun.shadow.mapSize, 'height', 256, 2048).name('Shadow Map Height')
-    lightFolder.add(sun.shadow.camera, 'near', 0.1, 10).name('Shadow Camera Near')
-    lightFolder.add(sun.shadow.camera, 'far', 10, 1000).name('Shadow Camera Far')
-    lightFolder.add(sun, 'intensity', 0, 10).name('Light Intensity')
 
     combatManager.takeTurns(world)
 }

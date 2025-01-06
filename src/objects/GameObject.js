@@ -14,7 +14,7 @@ export class GameObject extends THREE.Group {
 		this.position.copy(coords)
 
 		this.mesh = mesh
-		this.add(mesh)
+		this.add(mesh.scene || mesh)
 
 		this.hitPoints = 10
 		this.maxHitPoints = 10

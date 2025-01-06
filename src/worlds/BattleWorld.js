@@ -64,7 +64,6 @@ export class BattleWorld extends THREE.Group {
 	}
 
 	createTerrain() {
-
 		const gridTexture = assetLoader.getTexture('gridTexture')
 		gridTexture.repeat = new THREE.Vector2(this.width, this.height)
 		gridTexture.wrapS = THREE.RepeatWrapping
