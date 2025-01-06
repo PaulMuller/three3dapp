@@ -55,11 +55,6 @@ class AssetLoader {
 			Oak_Trunk: 'assets/textures/TreesTexture/Oak_Trunk.png',
 			Spruce_Leaf: 'assets/textures/TreesTexture/Spruce_Leaf.png',
 			Spruce_Trunk: 'assets/textures/TreesTexture/Spruce_Trunk.png',
-
-			// Barbarian_texture: 'assets/textures/CharactersTexture/barbarian_texture.png',
-			// Knight_texture: 'assets/textures/CharactersTexture/knight_texture.png',
-			// Mage_texture: 'assets/textures/CharactersTexture/mage_texture.png',
-			// Rogue_texture: 'assets/textures/CharactersTexture/rogue_texture.png'
 		}
 	};
 

@@ -21,7 +21,7 @@ class RTSControls extends Controls {
 		this.movementSpeed = 10
 		this.rollSpeed = 2
 		this.zoomSpeed = 0.005
-		this.minZoom = 4
+		this.minZoom = 1
 		this.maxZoom = 10
 
 		this._moveState = {
@@ -45,23 +45,24 @@ class RTSControls extends Controls {
 	}
 
 	_onKeyDown(event) {
-		switch (event.key) {
-			case 'w':
+		console.log(event)
+		switch (event.code) {
+			case 'KeyW':
 				this._moveState.forward = 1
 				break
-			case 's':
+			case 'KeyS':
 				this._moveState.backward = 1
 				break
-			case 'a':
+			case 'KeyA':
 				this._moveState.left = 1
 				break
-			case 'd':
+			case 'KeyD':
 				this._moveState.right = 1
 				break
-			case 'q':
+			case 'KeyQ':
 				this._moveState.rotateLeft = 1
 				break
-			case 'e':
+			case 'KeyE':
 				this._moveState.rotateRight = 1
 				break
 		}
@@ -69,23 +70,23 @@ class RTSControls extends Controls {
 	}
 
 	_onKeyUp(event) {
-		switch (event.key) {
-			case 'w':
+		switch (event.code) {
+			case 'KeyW':
 				this._moveState.forward = 0
 				break
-			case 's':
+			case 'KeyS':
 				this._moveState.backward = 0
 				break
-			case 'a':
+			case 'KeyA':
 				this._moveState.left = 0
 				break
-			case 'd':
+			case 'KeyD':
 				this._moveState.right = 0
 				break
-			case 'q':
+			case 'KeyQ':
 				this._moveState.rotateLeft = 0
 				break
-			case 'e':
+			case 'KeyE':
 				this._moveState.rotateRight = 0
 				break
 		}
